@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
-const Formulario = () => {
+const Formulario = ({guardarBusquedaLetra}) => {
+  
   // States
-
   const [busqueda, guardarBusqueda] = useState({
-    artista: "",
-    cancion: "",
+    artista: '',
+    cancion: ''
   });
 
   const [error, guardarError] = useState(false);
@@ -16,25 +16,26 @@ const Formulario = () => {
 
   // Función a cada input para leer su contenido
 
-  const actualizarState = (e) => {
+  const actualizarState = e => {
     guardarBusqueda({
       ...busqueda,
-      [e.target.name]: [e.target.value],
+      [e.target.name]: e.target.value
     });
   };
 
   // Consultar las APIs
 
-  const buscarInformacion = (e) => {
+  const buscarInformacion = e => {
     e.preventDefault();
 
-    if (artista.trim() === "" || cancion.trim() === "") {
+    if (artista.trim() === '' || cancion.trim() === '') {
       guardarError(true);
       return;
     }
     guardarError(false);
 
     // Pasamos la comprobación.
+    guardarBusquedaLetra(busqueda);
   };
 
   return (
@@ -81,6 +82,11 @@ const Formulario = () => {
               <button type="submit" className="btn btn-primary btn-block">
                 SEARCH
               </button>
+              {error ? (
+                <p className="alert alert-danger text-center p-2">
+                  You must fill all the fields
+                </p>
+              ) : null}
             </fieldset>
           </form>
         </div>
