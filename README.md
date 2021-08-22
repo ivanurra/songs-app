@@ -2,4 +2,4 @@
 
 ![Screenshot](public/eddie.png)
 
-API:
+API: https://lyricsovh.docs.apiary.io/#
